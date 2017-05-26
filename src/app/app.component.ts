@@ -6,8 +6,7 @@ import { Note } from './components/note/note.interface'
 
 @Component({
   selector: 'notes-app',
-  template: require('./app.component.html'),
-  styles: [require('./app.component.scss')]
+  template: require('./app.component.html')
 })
 
 export class AppComponent {
