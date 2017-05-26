@@ -1,10 +1,18 @@
 import { Component } from '@angular/core';
+
 import '../assets/styles.scss';
 
+import { Note } from './components/note/note.interface'
+
 @Component({
-  selector: 'my-app',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'notes-app',
+  template: require('./app.component.html'),
+  styles: [require('./app.component.scss')]
 })
 
-export class AppComponent { }
+export class AppComponent {
+  notes: Note[] = [
+    { title: 'Title', body: 'Some stuff in here.' },
+    { title: 'Another Thing', body: 'More stuff in this one.' }
+  ];
+}
