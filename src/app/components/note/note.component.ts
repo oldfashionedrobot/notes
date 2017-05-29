@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
-import { Note } from './note.interface'
+import { Note } from '../../models/note.model'
 
 @Component({
   selector: 'note',
-  template: require('./note.component.html'),
-  styles: [require('./note.component.scss')]
+  template: require('./note.template'),
+  styles: [require('./note.styles')]
 })
 
 export class NoteComponent {
