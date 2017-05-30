@@ -5,12 +5,12 @@ import { NotesService } from '../../services/notes.service'
 import { Note } from '../../models/note.model'
 
 @Component({
-  selector: 'note-list',
-  template: require('./noteList.template')
+  selector: 'note-grid',
+  template: require('./noteGrid.template')
   // styles: [require('./note.styles')]
 })
 
-export class NoteListComponent {
+export class NoteGridComponent {
   private notes: Note[];
 
   constructor(private notesService: NotesService) {

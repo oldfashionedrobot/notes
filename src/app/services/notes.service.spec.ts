@@ -21,8 +21,8 @@ describe('NotesService', () => {
     }));
 
     it('should return all notes', inject([NotesService], (service: NotesService) => {
-      let note1 = new Note(1, 'title', 'body');
-      let note2 = new Note(2, 'title 2', 'body 2');
+      let note1 = new Note('title', 'body');
+      let note2 = new Note('title 2', 'body 2');
 
       service.addNote(note1);
       service.addNote(note2);

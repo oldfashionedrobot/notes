@@ -4,23 +4,27 @@ import { Note } from '../models/note.model';
 
 @Injectable()
 export class NotesService {
-  // Placeholder for last id so we can simulate
-  // automatic incrementing of id's
-  private lastId: number = 3;
+  private lastId: number;
 
-  // Placeholder for todo's
-  private notes: Note[] = [
-    new Note(1, 'Title', 'Some stuff in here.'),
-    new Note(2, 'Another Thing', 'More stuff in this one.')
-  ];
+  private notes: Note[] = [];
 
-  constructor() {}
+  constructor() {
+    this.notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+    if(this.notes.length > 0)
+      this.lastId = this.notes[this.notes.length - 1].id;
+    else
+      this.lastId = 0;
+  }
 
   // Simulate POST /notes
   addNote(note: Note): NotesService {
     note.id = ++this.lastId;
 
     this.notes.push(note);
+
+    this._storeNotes();
+
     return this;
   }
 
@@ -28,6 +32,9 @@ export class NotesService {
   deleteNote(id: number): NotesService {
     this.notes = this.notes
       .filter(note => note.id !== id);
+
+    this._storeNotes();
+
     return this;
   }
 
@@ -38,6 +45,9 @@ export class NotesService {
       return null;
     }
     Object.assign(note, values);
+
+    this._storeNotes();
+
     return note;
   }
 
@@ -51,5 +61,9 @@ export class NotesService {
     return this.notes
       .filter(note => note.id === id)
       .pop();
+  }
+
+  private _storeNotes(): void {
+    localStorage.setItem('notes', JSON.stringify(this.notes));
   }
 }
